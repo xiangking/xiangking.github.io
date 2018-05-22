@@ -110,15 +110,15 @@
         addMask($videoImg[i]);
       }
     };
-
+    
     var render = function render(res) {
       var ulTmpl = "";
       for (var j = 0, len2 = res.list.length; j < len2; j++) {
         var data = res.list[j].arr;
         var liTmpl = "";
         for (var i = 0, len = data.link.length; i < len; i++) {
-          var minSrc = 'http://litten.me/ins-min/' + data.link[i] + '.min.jpg';
-          var src = 'https://www.instagram.com/wangxiang2047/' + data.link[i];
+          var minSrc = 'https://xiangking.github.io/ins-min/' + data.link[i] + '.min.jpg';
+          var src = 'https://xiangking.github.io/ins/' + data.link[i];
           var type = data.type[i];
           var target = src + (type === 'video' ? '.mp4' : '.jpg');
           src += '.jpg';
