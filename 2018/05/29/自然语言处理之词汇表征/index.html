@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiangking.github.io">
-  <title>新博客 | WX的博客</title>
+  <title>自然语言处理之词汇表征 | WX的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="虽然还是比较基础，只有一个主页功能，但是比以前的CSDN看起来爽多了，希望可以坚持写博客吧。">
+  <meta name="description" content="对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。 但">
 <meta name="keywords" content="Machine Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新博客">
-<meta property="og:url" content="https://xiangking.github.io/2018/05/22/新博客/index.html">
+<meta property="og:title" content="自然语言处理之词汇表征">
+<meta property="og:url" content="https://xiangking.github.io/2018/05/29/自然语言处理之词汇表征/index.html">
 <meta property="og:site_name" content="WX的博客">
-<meta property="og:description" content="虽然还是比较基础，只有一个主页功能，但是比以前的CSDN看起来爽多了，希望可以坚持写博客吧。">
+<meta property="og:description" content="对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。 但">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-22T09:23:05.622Z">
+<meta property="og:image" content="https://xiangking.github.io/assets/blogImg/feature_show.png">
+<meta property="og:updated_time" content="2018-05-29T13:52:29.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="新博客">
-<meta name="twitter:description" content="虽然还是比较基础，只有一个主页功能，但是比以前的CSDN看起来爽多了，希望可以坚持写博客吧。">
+<meta name="twitter:title" content="自然语言处理之词汇表征">
+<meta name="twitter:description" content="对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。 但">
+<meta name="twitter:image" content="https://xiangking.github.io/assets/blogImg/feature_show.png">
   
     <link rel="alternative" href="/atom.xml" title="WX的博客" type="application/atom+xml">
   
@@ -159,27 +161,32 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-新博客" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-自然语言处理之词汇表征" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      新博客
+      自然语言处理之词汇表征
     </h1>
   
 
         
-        <a href="/2018/05/22/新博客/" class="archive-article-date">
-  	<time datetime="2018-05-22T09:22:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
+        <a href="/2018/05/29/自然语言处理之词汇表征/" class="archive-article-date">
+  	<time datetime="2018-05-29T13:22:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>虽然还是比较基础，只有一个主页功能，但是比以前的CSDN看起来爽多了，希望可以坚持写博客吧。</p>
+        <p>对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。</p>
+<p>但是，从上面的描述中明显可以看出one-hot也有一个比较大的问题，它把本来比较相近的词之间的关系也给消除了，这显然也不是很合理。</p>
+<p>于是，我们考虑，用特征化的表示的方法来表示每个词。如下图所示：</p>
+<p><img src="/assets/blogImg/feature_show.png" alt="特征表示"></p>
+<p>对于Man、Woman、King、Queen、Apple和Qrange这几个词，我们专门挑选一些词来表示它们（当然实际中不是这么做的）。例如，对于Gender这个词来说，假定男性的性别为-1，女性的性别为+1，那么 man 的性别值可能就是-1，而 woman 就是-1。最终根据经验 king 就是-0.95，queen 是+0.97，apple 和 orange 没有性别可言。</p>
+<p>通过上述的方法，我们就可以得到一组编码来很好地表示我们所要使用的词。</p>
 
       
 
@@ -232,15 +239,11 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/05/29/自然语言处理之词汇表征/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          自然语言处理之词汇表征
-        
-      </div>
-    </a>
   
+    <a href="/2018/05/22/新博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">新博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

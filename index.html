@@ -160,6 +160,74 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-自然语言处理之词汇表征" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/29/自然语言处理之词汇表征/">自然语言处理之词汇表征</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/29/自然语言处理之词汇表征/" class="archive-article-date">
+  	<time datetime="2018-05-29T13:22:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。</p>
+<p>但是，从上面的描述中明显可以看出one-hot也有一个比较大的问题，它把本来比较相近的词之间的关系也给消除了，这显然也不是很合理。</p>
+<p>于是，我们考虑，用特征化的表示的方法来表示每个词。如下图所示：</p>
+<p><img src="/assets/blogImg/feature_show.png" alt="特征表示"></p>
+<p>对于Man、Woman、King、Queen、Apple和Qrange这几个词，我们专门挑选一些词来表示它们（当然实际中不是这么做的）。例如，对于Gender这个词来说，假定男性的性别为-1，女性的性别为+1，那么 man 的性别值可能就是-1，而 woman 就是-1。最终根据经验 king 就是-0.95，queen 是+0.97，apple 和 orange 没有性别可言。</p>
+<p>通过上述的方法，我们就可以得到一组编码来很好地表示我们所要使用的词。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/29/自然语言处理之词汇表征/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-新博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
