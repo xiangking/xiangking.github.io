@@ -16,12 +16,12 @@
 <meta property="og:site_name" content="WX的博客">
 <meta property="og:description" content="写在前面的话：这是跟着ApacheCN团队学习pytorch的学习笔记，主要资源来自pytorch官网和ApacheCN社区  一、PyTorch 是什么？它是一个基于 Python 的科学计算包, 其主要是为了解决两类场景:  NumPy 的替代品, 以使用 GPU 的强大加速功能 一个深度学习研究平台, 提供最大的灵活性和速度  个人感觉，其实无论是pytorch还是tensorflow其实都">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://xiangking.github.io/Users/macbook/Desktop/Variable.png">
-<meta property="og:updated_time" content="2018-06-06T14:35:16.128Z">
+<meta property="og:image" content="https://xiangking.github.io/assets/blogImg/1.png">
+<meta property="og:updated_time" content="2018-06-06T14:43:31.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习系列——PyTorch深度学习60分钟(一）">
 <meta name="twitter:description" content="写在前面的话：这是跟着ApacheCN团队学习pytorch的学习笔记，主要资源来自pytorch官网和ApacheCN社区  一、PyTorch 是什么？它是一个基于 Python 的科学计算包, 其主要是为了解决两类场景:  NumPy 的替代品, 以使用 GPU 的强大加速功能 一个深度学习研究平台, 提供最大的灵活性和速度  个人感觉，其实无论是pytorch还是tensorflow其实都">
-<meta name="twitter:image" content="https://xiangking.github.io/Users/macbook/Desktop/Variable.png">
+<meta name="twitter:image" content="https://xiangking.github.io/assets/blogImg/1.png">
   
     <link rel="alternative" href="/atom.xml" title="WX的博客" type="application/atom+xml">
   
@@ -213,7 +213,7 @@ var _hmt = _hmt || [];
 <p><code>autograd</code> 自动求导包针对张量上的所有操作都提供了自动微分操作. 这是一个逐个运行的框架, 这意味着您的反向传播是由您的代码如何运行来定义的, 每个单一的迭代都可以不一样。</p>
 <h3 id="1-Variable（变量）"><a href="#1-Variable（变量）" class="headerlink" title="1.Variable（变量）"></a>1.Variable（变量）</h3><p><code>autograd.Variable</code> 是包的核心类. 它包装了张量, 并且支持几乎所有的操作. 一旦你完成了你的计算, 你就可以调用 <code>.backward()</code>方法, 然后所有的梯度计算会自动进行。</p>
 <p>pytorch允许通过 <code>.data</code> 属性来访问原始的张量, 而关于该 <code>variable</code>（变量）的梯度会被累计到 <code>.grad</code> 上去。</p>
-<p></p><p align="center"> <img src="/Users/macbook/Desktop/Variable.png" alt="1"> </p>
+<p></p><p align="center"> <img src="/assets/blogImg/1.png" alt="1"> </p>
 <p><br></p>
 <p>还有一个针对自动求导实现来说非常重要的类 <code>- Function</code>。</p>
 <p><code>Variable</code> 和 <code>Function</code> 是相互联系的, 并且它们构建了一个非循环的图, 编码了一个完整的计算历史信息. 每一个 <code>variable</code>（变量）都有一个 <code>.grad_fn</code> 属性, 它引用了一个已经创建了 <code>Variable</code> 的 <code>Function</code> （除了用户创建的 <code>Variable</code> 之外 - 它们的 <code>grad_fn is None</code> ）</p>
@@ -223,7 +223,7 @@ var _hmt = _hmt || [];
 <p>我们考虑上述例子的反向求导过程，首先，先写出整体的前向过程：<br>$$<br>y = x + 2<br>$$<br>$$<br>z = 3 * y^2<br>$$<br>$$<br>out = \frac{1}{4} * \sum_{i}^4{z_{i}}<br>$$</p>
 <p>所以在反向求导时：<br>$$<br>\nabla_{z_{i}} = \frac{\partial{out}}{\partial{z_{i}}} = \frac{1}{4}<br>$$<br>$$<br>\nabla_{y} = \frac{\partial{z_{i}}}{\partial{y}} = 6 * y<br>$$<br>$$<br>\nabla_{x} = \frac{\partial{y}}{\partial{x}} = 1<br>$$</p>
 <p>故而：</p>
-<p>$$<br>\nabla_{x} = \frac{\partial{out}}{\partial{x}} = \frac{1}{4} <em> 6 </em> y *1 = 4.5<br>$$</p>
+<p>$$<br>\nabla_{x} = \frac{\partial{out}}{\partial{x}} = \frac{1}{4} * 6 * y * 1 = 4.5<br>$$</p>
 <p><br><br>如果没有框架，单纯编写这段代码其实比较的繁琐。而在使用了pytorch框架后，只需要调用<code>out.backward()</code>，pytorch就会自动求导其导数，将其存放在<code>.grad</code>中：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">out.backward()</span><br><span class="line"><span class="built_in">print</span>(x.grad)</span><br><span class="line"></span><br><span class="line">&gt;&gt;tensor(<span class="string">[[ 4.5000,  4.5000],</span></span><br><span class="line"><span class="string">          [ 4.5000,  4.5000]]</span>)</span><br></pre></td></tr></table></figure>
 <p>同时，梯度的有趣应用：</p>
@@ -319,7 +319,7 @@ var _hmt = _hmt || [];
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          英语口语学习（不断更新）
         
       </div>
     </a>
@@ -471,6 +471,10 @@ MathJax.Hub.Queue(function() {
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">英语</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
