@@ -17,7 +17,7 @@
 <meta property="og:description" content="写在前面的话：这是跟着ApacheCN团队学习pytorch的学习笔记，主要资源来自pytorch官网和ApacheCN社区  一、PyTorch 是什么？它是一个基于 Python 的科学计算包, 其主要是为了解决两类场景:  NumPy 的替代品, 以使用 GPU 的强大加速功能 一个深度学习研究平台, 提供最大的灵活性和速度  个人感觉，其实无论是pytorch还是tensorflow其实都">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://xiangking.github.io/assets/blogImg/1.png">
-<meta property="og:updated_time" content="2018-06-06T14:43:31.553Z">
+<meta property="og:updated_time" content="2018-06-06T14:49:42.769Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习系列——PyTorch深度学习60分钟(一）">
 <meta name="twitter:description" content="写在前面的话：这是跟着ApacheCN团队学习pytorch的学习笔记，主要资源来自pytorch官网和ApacheCN社区  一、PyTorch 是什么？它是一个基于 Python 的科学计算包, 其主要是为了解决两类场景:  NumPy 的替代品, 以使用 GPU 的强大加速功能 一个深度学习研究平台, 提供最大的灵活性和速度  个人感觉，其实无论是pytorch还是tensorflow其实都">
@@ -244,20 +244,17 @@ var _hmt = _hmt || [];
 <li>nn.Conv2d 的输入必须是 4 维的, 形如 nSamples x nChannels x Height x Width</li>
 </ul>
 <p><br></p>
-<p>###2.损失函数</p>
-<p>损失函数采用 (output, target) 输入对, 并计算预测输出结果与实际目标的距离。</p>
+<h3 id="2-损失函数"><a href="#2-损失函数" class="headerlink" title="2.损失函数"></a>2.损失函数</h3><p>损失函数采用 (output, target) 输入对, 并计算预测输出结果与实际目标的距离。</p>
 <p>在 nn 包下有几种不同的损失函数。一个简单的损失函数是: <code>nn.MSELoss</code> 计算输出和目标之间的均方误差</p>
 <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output = net(input)</span><br><span class="line">target = Variable(torch.arange(1, 11))  <span class="comment"># 一个虚拟的目标</span></span><br><span class="line">criterion = nn.MSELoss()</span><br><span class="line"></span><br><span class="line">loss = criterion(output, target)</span><br><span class="line">print(loss)</span><br></pre></td></tr></table></figure>
 <p>现在, 如果你沿着 loss 反向传播的方向使用 .grad_fn 属性, 你将会看到一个如下所示的计算图:</p>
 <figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">input</span> -&gt;</span> <span class="function"><span class="title">conv2d</span> -&gt;</span> <span class="function"><span class="title">relu</span> -&gt;</span> <span class="function"><span class="title">maxpool2d</span> -&gt;</span> <span class="function"><span class="title">conv2d</span> -&gt;</span> <span class="function"><span class="title">relu</span> -&gt;</span> maxpool2d</span><br><span class="line">      -&gt; <span class="function"><span class="title">view</span> -&gt;</span> <span class="function"><span class="title">linear</span> -&gt;</span> <span class="function"><span class="title">relu</span> -&gt;</span> <span class="function"><span class="title">linear</span> -&gt;</span> <span class="function"><span class="title">relu</span> -&gt;</span> linear</span><br><span class="line">      -&gt; MSELoss</span><br><span class="line">      -&gt; loss</span><br></pre></td></tr></table></figure>
 <p>所以, 当我们调用 loss.backward(), 整个图与损失是有区别的, 图中的所有变量都将用 .grad 梯度累加它们的变量。</p>
 <p><br></p>
-<p>###3.反向传播</p>
-<p>为了反向传播误差, 我们所要做的就是 <code>loss.backward()</code>。你需要清除现有的梯度, 否则梯度会累加之前的梯度。<br>现在我们使用 <code>loss.backward()</code>, 看看反向传播之前和之后 <code>conv1</code> 的梯度。</p>
+<h3 id="3-反向传播"><a href="#3-反向传播" class="headerlink" title="3.反向传播"></a>3.反向传播</h3><p>为了反向传播误差, 我们所要做的就是 <code>loss.backward()</code>。你需要清除现有的梯度, 否则梯度会累加之前的梯度。<br>现在我们使用 <code>loss.backward()</code>, 看看反向传播之前和之后 <code>conv1</code> 的梯度。</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">net</span><span class="selector-class">.zero_grad</span>()     # 把之前的梯度清零</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">print</span>(<span class="string">'conv1.bias.grad before backward'</span>)</span><br><span class="line"><span class="selector-tag">print</span>(net.conv1.bias.grad)</span><br><span class="line"></span><br><span class="line">&gt;&gt;<span class="selector-tag">None</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">loss</span><span class="selector-class">.backward</span>()</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">print</span>(<span class="string">'conv1.bias.grad after backward'</span>)</span><br><span class="line"><span class="selector-tag">print</span>(net.conv1.bias.grad)</span><br><span class="line"></span><br><span class="line">&gt;&gt;<span class="selector-tag">tensor</span>([ <span class="number">0.1580</span>, -<span class="number">0.0348</span>, -<span class="number">0.1106</span>,  <span class="number">0.0706</span>, -<span class="number">0.0937</span>, -<span class="number">0.0539</span>])</span><br></pre></td></tr></table></figure>
 <p><br></p>
-<p>###4.更新权重</p>
-<p>实践中使用的最简单的更新规则是随机梯度下降( SGD ):</p>
+<h3 id="4-更新权重"><a href="#4-更新权重" class="headerlink" title="4.更新权重"></a>4.更新权重</h3><p>实践中使用的最简单的更新规则是随机梯度下降( SGD ):</p>
 <p>$$<br>weight = weight - learning_rate * gradient<br>$$</p>
 <p>可以使用简单的 python 代码来实现这个:</p>
 <figure class="highlight stan"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"><span class="name">for</span> f <span class="name">in</span> net.<span class="title">parameters</span>():</span><br><span class="line">    f.<span class="title">data</span>.sub_(f.grad.<span class="title">data</span> * learning_rate)</span><br></pre></td></tr></table></figure>
