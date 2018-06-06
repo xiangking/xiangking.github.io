@@ -6,22 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiangking.github.io">
-  <title>自然语言处理之词汇表征 | WX的博客</title>
+  <title>推荐系统学习（一） | WX的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。 但">
+  <meta name="description" content="##一、推荐系统综述 ###1.什么是推荐系统在这个时代，无论是信息消费者还是信息生产者都遇到了很大的挑战。作为信息消费者，如何从大量信息中找到自己感兴趣的信息是一件非常困难的事情；作为信息生产者， 如何让自己生产的信息脱颖而出，受到广大用户的关注，也是一件非常困难的事情。推荐系统就是解决这一矛盾的重要工具。 推荐系统就是自动联系用户和物品的一种工具，它能够在信息过载的环境中帮助用户发现令他们感兴">
 <meta name="keywords" content="Machine Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="自然语言处理之词汇表征">
-<meta property="og:url" content="https://xiangking.github.io/2018/05/29/自然语言处理之词汇表征/index.html">
+<meta property="og:title" content="推荐系统学习（一）">
+<meta property="og:url" content="https://xiangking.github.io/2018/06/06/推荐系统学习（一）/index.html">
 <meta property="og:site_name" content="WX的博客">
-<meta property="og:description" content="对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。 但">
+<meta property="og:description" content="##一、推荐系统综述 ###1.什么是推荐系统在这个时代，无论是信息消费者还是信息生产者都遇到了很大的挑战。作为信息消费者，如何从大量信息中找到自己感兴趣的信息是一件非常困难的事情；作为信息生产者， 如何让自己生产的信息脱颖而出，受到广大用户的关注，也是一件非常困难的事情。推荐系统就是解决这一矛盾的重要工具。 推荐系统就是自动联系用户和物品的一种工具，它能够在信息过载的环境中帮助用户发现令他们感兴">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://xiangking.github.io/assets/blogImg/feature_show.png">
-<meta property="og:updated_time" content="2018-05-29T13:52:29.460Z">
+<meta property="og:image" content="https://xiangking.github.io/Users/macbook/Desktop/4155986-d03af642effda1ca.png">
+<meta property="og:image" content="https://xiangking.github.io/Users/macbook/Desktop/屏幕快照%202018-06-06%2017.47.43.png">
+<meta property="og:updated_time" content="2018-06-06T14:10:18.458Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="自然语言处理之词汇表征">
-<meta name="twitter:description" content="对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。 但">
-<meta name="twitter:image" content="https://xiangking.github.io/assets/blogImg/feature_show.png">
+<meta name="twitter:title" content="推荐系统学习（一）">
+<meta name="twitter:description" content="##一、推荐系统综述 ###1.什么是推荐系统在这个时代，无论是信息消费者还是信息生产者都遇到了很大的挑战。作为信息消费者，如何从大量信息中找到自己感兴趣的信息是一件非常困难的事情；作为信息生产者， 如何让自己生产的信息脱颖而出，受到广大用户的关注，也是一件非常困难的事情。推荐系统就是解决这一矛盾的重要工具。 推荐系统就是自动联系用户和物品的一种工具，它能够在信息过载的环境中帮助用户发现令他们感兴">
+<meta name="twitter:image" content="https://xiangking.github.io/Users/macbook/Desktop/4155986-d03af642effda1ca.png">
   
     <link rel="alternative" href="/atom.xml" title="WX的博客" type="application/atom+xml">
   
@@ -161,32 +162,78 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-自然语言处理之词汇表征" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-推荐系统学习（一）" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      自然语言处理之词汇表征
+      推荐系统学习（一）
     </h1>
   
 
         
-        <a href="/2018/05/29/自然语言处理之词汇表征/" class="archive-article-date">
-  	<time datetime="2018-05-29T13:22:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-29</time>
+        <a href="/2018/06/06/推荐系统学习（一）/" class="archive-article-date">
+  	<time datetime="2018-06-06T10:02:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。</p>
-<p>但是，从上面的描述中明显可以看出one-hot也有一个比较大的问题，它把本来比较相近的词之间的关系也给消除了，这显然也不是很合理。</p>
-<p>于是，我们考虑，用特征化的表示的方法来表示每个词。如下图所示：</p>
-<p><img src="/assets/blogImg/feature_show.png" alt="特征表示"></p>
-<p>对于Man、Woman、King、Queen、Apple和Qrange这几个词，我们专门挑选一些词来表示它们（当然实际中不是这么做的）。例如，对于Gender这个词来说，假定男性的性别为-1，女性的性别为+1，那么 man 的性别值可能就是-1，而 woman 就是-1。最终根据经验 king 就是-0.95，queen 是+0.97，apple 和 orange 没有性别可言。</p>
-<p>通过上述的方法，我们就可以得到一组编码来很好地表示我们所要使用的词。</p>
+        <p>##一、推荐系统综述</p>
+<p>###1.什么是推荐系统<br>在这个时代，无论是信息消费者还是信息生产者都遇到了很大的挑战。作为信息消费者，如何从大量信息中找到自己感兴趣的信息是一件非常困难的事情；作为信息生产者， 如何让自己生产的信息脱颖而出，受到广大用户的关注，也是一件非常困难的事情。推荐系统就是解决这一矛盾的重要工具。</p>
+<p>推荐系统就是自动联系用户和物品的一种工具，它能够在信息过载的环境中帮助用户发现令他们感兴趣的信息，也能将信息推送给对它们感兴趣的用户。</p>
+<p>一个完整的推荐系统一般存在3个参与方：用户、物品提供者和提供推荐系统的网站。<br>以图书推荐为例， 首先，推荐系统需要满足用户的需求，给用户推荐那些令他们感兴趣的图书。其次，推荐系统要让各出版社的书都能够被推荐给对其感兴趣的用户，而不是只推荐几个大型出版社的书。最后， 好的推荐系统设计，能够让推荐系统本身收集到高质量的用户反馈，不断完善推荐的质量，增加 用户和网站的交互，提高网站的收入。因此在评测一个推荐算法时，需要同时考虑三方的利益， 一个好的推荐系统是能够令三方共赢的系统</p>
+<p></p><p align="center"><img src="/Users/macbook/Desktop/4155986-d03af642effda1ca.png" alt="1.1"></p>
+<p><br></p>
+<p>###2.推荐系统的应用</p>
+<ol>
+<li>电子商务领域：著名的电子商务网站亚马逊就是个性化推荐系统的积极应用者何推广者。亚马逊的推荐系统深入到了其各类产品中，其中最主要的应用有个性化商品推荐列表和相关商品的推荐列表。</li>
+<li>电影和视频网站：在电影和视频网站中，个性化推荐系统也是一种重要的应用。它能够帮助用户在浩渺的视频库中找到令他们感兴趣的视频。在这一领域中较为出名的就是Netflix公司和YouTube。</li>
+<li>个性化音乐网络电台</li>
+<li>个性化阅读</li>
+<li>基于位置的服务：随着移动设备的飞速发展，用户的位置信息已经非常容易获取，而位置是一种很重要的上下文信息，基于位置给用户推荐离他们近的且他感兴趣的服务，用户就更容易去消费。</li>
+<li>个性化邮件</li>
+<li>个性化广告</li>
+</ol>
+<p><br></p>
+<p>###3.推荐系统实验方法<br>推荐系统中，主要有3种评测推荐效果的实验方法，即离线实验(offline experiment)、用户调查(user study)和在线实验(online experiment)。</p>
+<p>###3.1离线实验<br>离线实验的方法一般由如下几个步骤构成:</p>
+<ol>
+<li>通过日志系统获得用户行为数据，并按照一定格式生成一个标准的数据集;</li>
+<li>将数据集按照一定的规则分成训练集和测试集;</li>
+<li>在训练集上训练用户兴趣模型，在测试集上进行预测;</li>
+<li>通过事先定义的离线指标评测算法在测试集上的预测结果。</li>
+</ol>
+<p>从上面的步骤可以看到，推荐系统的离线实验都是在数据集上完成的，也就是说它不需要一个实际的系统来供它实验，而只要有一个从实际系统日志中提取的数据集即可。这种实验方法的 好处是不需要真实用户参与，可以直接快速地计算出来，从而方便、快速地测试大量不同的算法。它的主要缺点是无法获得很多商业上关注的指标，如点击率、转化率等，而找到和商业指标非常相关的离线指标也是很困难的事情。</p>
+<p><img src="/Users/macbook/Desktop/屏幕快照 2018-06-06 17.47.43.png" alt="3.1"></p>
+<p>###3.2用户调查</p>
+<p>用户调查是推荐系统评测的一个重要工具，很多离线时没有办法评测的与用户主观感受有关的指标都可以通过用户调查获得。在用户调查中，有一些需要注意的事项：</p>
+<ol>
+<li><p>成本控制：用户调查成本很高，需要用户花大量 时间完成一个个任务，并回答相关的问题。有些时候，还需要花钱雇用测试用户。因此，大多数情况下很难进行大规模的用户调查，而对于参加人数较少的用户调查，得出的很多结论往往 没有统计意义。因此，我们在做用户调查时，一方面要控制成本，另一方面又要保证结果的统计.<br>意义。</p>
+</li>
+<li><p>双盲实验：即不要让实验人员和用户事先知道测试的目标，以免用户的回答和实验人员的测试受主观成分的影响。</p>
+</li>
+<li><p>相同分布:测试用户需要尽量保证测试用户的分布和真实用户的分布相同，比如男女各半，以及年龄、活跃度的分布都和真实用户分布尽量相同。</p>
+</li>
+</ol>
+<p>用户调查的优缺点也很明显。它的优点是可以获得很多体现用户主观感受的指标，相对在线实验风险很低，出现错误后很容易弥补。缺点是招募测试用户代价较大，很难组织大规模的测试 用户，因此会使测试结果的统计意义不足。此外，在很多时候设计双盲实验非常困难，而且用户 在测试环境下的行为和真实环境下的行为可能有所不同，因而在测试环境下收集的测试指标可能在真实环境下无法重现。</p>
+<p>###3.3在线实验</p>
+<p>在完成离线实验和必要的用户调查后，可以将推荐系统上线做AB测试，将它和旧的算法进行比较。</p>
+<p>AB测试是一种很常用的在线评测算法的实验方法。它通过一定的规则将用户随机分成几组，并对不同组用户采取不同的算法，然后通过统计不同组用户的各种不同的评测指标比较不同算法的好坏。</p>
+<p>AB测试的优点是可以公平获得不同算法实际在线时的性能指标，包括商业上关注的指标。 AB测试的缺点主要是周期比较长，必须进行长期的实验才能得到可靠的结果。因此一般不会用 AB测试测试所有的算法，而只是用它测试那些在离线实验和用户调查中表现很好的算法。其次， 一个大型网站的AB测试系统的设计也是一项复杂的工程。</p>
+<p>###3.4总结</p>
+<p>一般来说，一个新的推荐算法最终上线，需要完成上面所说的3个实验：</p>
+<ol>
+<li>首先，需要通过离线实验证明它在很多离线指标上优于现有的算法。</li>
+<li>然后，需要通过用户调查确定它的用户满意度不低于现有的算法。</li>
+<li>最后，通过在线的AB测试确定它在我们关心的指标上。</li>
+</ol>
+<p><br><br><br></p>
+<p>###参考:<br><a href="https://www.jianshu.com/p/a0770d03e13f" target="_blank" rel="noopener">https://www.jianshu.com/p/a0770d03e13f</a></p>
+<p></p><p>《推荐系统实践》</p>
 
       
 
@@ -239,18 +286,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/06/06/推荐系统学习（一）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/06/06/深度学习系列——PyTorch深度学习60分钟(一）/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          推荐系统学习（一）
+          深度学习系列——PyTorch深度学习60分钟(一）
         
       </div>
     </a>
   
   
-    <a href="/2018/05/22/新博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">新博客</div>
+    <a href="/2018/05/29/自然语言处理之词汇表征/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">自然语言处理之词汇表征</div>
       <i class="icon-circle-right"></i>
     </a>
   
