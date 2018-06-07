@@ -17,7 +17,7 @@
 <meta property="og:description" content="对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。 但">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://xiangking.github.io/assets/blogImg/feature_show.png">
-<meta property="og:updated_time" content="2018-05-29T13:52:29.460Z">
+<meta property="og:updated_time" content="2018-06-07T15:12:55.175Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自然语言处理之词汇表征">
 <meta name="twitter:description" content="对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。 但">
@@ -183,6 +183,7 @@ var _hmt = _hmt || [];
       
         <p>对于表征一个文本，经常会用到one-hot编码。one-hot编码可以消除词与词之间的由于编码所产生的差距。比如如果我们对一堆词直接使用0到N的编码，假设我们把晴天编码成0，把雨天编码成9，把吃饭编码成1，这样带来的结果就是晴天与吃饭之间的距离比晴天与雨天之间的距离要小，也就是说晴天这个词和吃饭更接近一点，这是不太合理的。而在使用了one-hot编码后，由这样编码所产生的不合理的差距就消除了。</p>
 <p>但是，从上面的描述中明显可以看出one-hot也有一个比较大的问题，它把本来比较相近的词之间的关系也给消除了，这显然也不是很合理。</p>
+<a id="more"></a> 
 <p>于是，我们考虑，用特征化的表示的方法来表示每个词。如下图所示：</p>
 <p><img src="/assets/blogImg/feature_show.png" alt="特征表示"></p>
 <p>对于Man、Woman、King、Queen、Apple和Qrange这几个词，我们专门挑选一些词来表示它们（当然实际中不是这么做的）。例如，对于Gender这个词来说，假定男性的性别为-1，女性的性别为+1，那么 man 的性别值可能就是-1，而 woman 就是-1。最终根据经验 king 就是-0.95，queen 是+0.97，apple 和 orange 没有性别可言。</p>
