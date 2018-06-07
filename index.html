@@ -180,7 +180,8 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="英标"><a href="#英标" class="headerlink" title="英标"></a>英标</h2><h3 id="一、元音部分："><a href="#一、元音部分：" class="headerlink" title="一、元音部分："></a>一、元音部分：</h3><ol>
+        <p><br></p>
+<h2 id="英标"><a href="#英标" class="headerlink" title="英标"></a>英标</h2><h3 id="一、元音部分："><a href="#一、元音部分：" class="headerlink" title="一、元音部分："></a>一、元音部分：</h3><ol>
 <li><p>单元音：[i:]、[i]、[ɔ:]、[ɔ]、[u:]、[u]、[ə:]、[ə]、[ɑ:]、[ʌ]、[e]、[æ]</p>
 </li>
 <li><p>双元音：[ei]、[ai]、[ɔi]、[ɛə]、[uə]、[iə]、[au]、[əu] </p>
@@ -275,6 +276,8 @@ var _hmt = _hmt || [];
 <p>个人感觉，其实无论是pytorch还是tensorflow其实都是帮忙解决了在GPU上的自动求导问题，这是对我们这些深度学习使用者来说最关键的。也就是说，通过这些框架，我们不用去过多地操心反向求导的过程，而是可以更多地专注于神经网络（或者说深度学习）的结构等问题。当然，它们也提供了相应的封装来满足一些基本需求。</p>
 <p><br></p>
 <h2 id="二、新手入门"><a href="#二、新手入门" class="headerlink" title="二、新手入门"></a>二、新手入门</h2><p>对于深度学习来说，一个比较重要的概念就是张量。数学上的定义是张量（Tensor）是一个定义在的一些向量空间和一些对偶空间的笛卡儿积上的多重线性映射。而简单来说其实就是矢量的推广。在同构的意义下，第零阶张量为标量，第一阶张量为向量 （Vector）， 第二阶张量则成为矩阵 （Matrix）。对我们来说，常用的其实也就3阶和4阶的张量（这里没有把矩阵它们当成张量），更高阶张量其实也很难遇到。例如一张图片就是3阶张量，包括长、宽和通道（通常是RGB3通道）。在使用时也会变成4阶张量，因为会有batch的值。（也就是有很多3阶张量堆在一起）。</p>
+<h3 id="1-初识张量"><a href="#1-初识张量" class="headerlink" title="1.初识张量"></a>1.初识张量</h3><p>Tensors 与 NumPy 的 ndarrays 非常相似, 除此之外还可以在 GPU 上使用张量来加速计算。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">from __future__ import print_function</span><br><span class="line">import torch</span><br><span class="line"></span><br><span class="line"># 构建一个 <span class="number">5</span>x3 的矩阵</span><br><span class="line"># 张量只是创建了，但是未初始化</span><br><span class="line"># 可以看出，其实这里就是生成了一个<span class="number">5</span>行<span class="number">3</span>列的矩阵</span><br><span class="line">x = torch.Tensor(<span class="number">5</span>, <span class="number">3</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">&gt;&gt;tensor([[ <span class="number">0.0000</span>, <span class="number">-2.0000</span>,  <span class="number">0.0000</span>],</span><br><span class="line">          [<span class="number">-2.0000</span>,  <span class="number">0.0000</span>,  <span class="number">0.0000</span>],</span><br><span class="line">          [ <span class="number">0.0000</span>,  <span class="number">0.0000</span>,  <span class="number">0.0000</span>],</span><br><span class="line">          [ <span class="number">0.0000</span>,  <span class="number">0.0000</span>,  <span class="number">0.0000</span>],</span><br><span class="line">          [ <span class="number">0.0000</span>,  <span class="number">0.0000</span>,  <span class="number">0.0000</span>]])</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"># 获取 size，注：torch.Size 实际上是一个 tuple(元组)，所以它支持所有 tuple 的操作。</span><br><span class="line">print(x.size())</span><br><span class="line"></span><br><span class="line">&gt;&gt;torch.Size([<span class="number">5</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">#PS：torch.Size 实际上是一个 tuple（元组）, 所以它支持所有 tuple（元组）的操作.</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2018/06/06/深度学习系列——PyTorch深度学习60分钟(一）/#more">more >></a>
         
@@ -350,7 +353,8 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="一、推荐系统综述"><a href="#一、推荐系统综述" class="headerlink" title="一、推荐系统综述"></a>一、推荐系统综述</h2><h3 id="1-什么是推荐系统"><a href="#1-什么是推荐系统" class="headerlink" title="1.什么是推荐系统"></a>1.什么是推荐系统</h3><p>在这个时代，无论是信息消费者还是信息生产者都遇到了很大的挑战。作为信息消费者，如何从大量信息中找到自己感兴趣的信息是一件非常困难的事情；作为信息生产者， 如何让自己生产的信息脱颖而出，受到广大用户的关注，也是一件非常困难的事情。推荐系统就是解决这一矛盾的重要工具。</p>
+        <p><br></p>
+<h2 id="一、推荐系统综述"><a href="#一、推荐系统综述" class="headerlink" title="一、推荐系统综述"></a>一、推荐系统综述</h2><h3 id="1-什么是推荐系统"><a href="#1-什么是推荐系统" class="headerlink" title="1.什么是推荐系统"></a>1.什么是推荐系统</h3><p>在这个时代，无论是信息消费者还是信息生产者都遇到了很大的挑战。作为信息消费者，如何从大量信息中找到自己感兴趣的信息是一件非常困难的事情；作为信息生产者， 如何让自己生产的信息脱颖而出，受到广大用户的关注，也是一件非常困难的事情。推荐系统就是解决这一矛盾的重要工具。</p>
 <p>推荐系统就是自动联系用户和物品的一种工具，它能够在信息过载的环境中帮助用户发现令他们感兴趣的信息，也能将信息推送给对它们感兴趣的用户。</p>
 <p>一个完整的推荐系统一般存在3个参与方：用户、物品提供者和提供推荐系统的网站。<br>以图书推荐为例， 首先，推荐系统需要满足用户的需求，给用户推荐那些令他们感兴趣的图书。其次，推荐系统要让各出版社的书都能够被推荐给对其感兴趣的用户，而不是只推荐几个大型出版社的书。最后， 好的推荐系统设计，能够让推荐系统本身收集到高质量的用户反馈，不断完善推荐的质量，增加 用户和网站的交互，提高网站的收入。因此在评测一个推荐算法时，需要同时考虑三方的利益， 一个好的推荐系统是能够令三方共赢的系统</p>
 <p></p><p align="center"><img src="/assets/blogImg/2.png" alt="1.1"></p>
